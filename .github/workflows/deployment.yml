@@ -64,21 +64,13 @@ jobs:
       - name: Checkout do Código
         uses: actions/checkout@v4
 
-      - name: Debug Secrets
-        run: |
-          echo "VERCEL_ORG_ID tamanho: ${#ORG_ID}"
-          echo "VERCEL_PROJECT_ID tamanho: ${#PRJ_ID}"
-          echo "VERCEL_TOKEN tamanho: ${#TOKEN}"
-        env:
-          ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          PRJ_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          TOKEN: ${{ secrets.VERCEL_TOKEN }}
-
       - name: Deploy para Vercel
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-project-name: 'meu-projeto-tdd-src'
+          scope: 'nitos-projects-cfc9e4cd'
           vercel-version: latest
           vercel-args: '--prod'
